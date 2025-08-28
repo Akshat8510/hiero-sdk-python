@@ -1,5 +1,3 @@
-This is a markdown file, click Ctrl+Shift+V to view or click open preview.
-
 # Changelog
 
 All notable changes to this project will be documented in this file.  
@@ -14,12 +12,13 @@ This changelog is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.
 ### Changed
 - Extract Ed25519 byte loading logic into private helper method `_from_bytes_ed25519()`
 
+### Fixed
+- Convert camelCase to snake_case in integration tests
+
 ## [0.1.4] - 2025-08-19
 ### Added
 - CONTRIBUTING.md: expanded documentation detailing various contribution processes in a step-by-step way. Includes new sections: blog posts and support.
 - README_upstream.md: documentation explaining how to rebase to main.
-
-### Added
 - Legacy ECDSA DER parse support
 - documented private key from_string method behavior
 - ContractInfo class
@@ -158,7 +157,7 @@ This changelog is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Python version incremented from 3.9 to 3.10
 
 ### Removed
-- pdm.lock & uv.lock file
+- pdm.lock & uv.lock 
 
 
 ## [0.1.0] - 2025-02-19
