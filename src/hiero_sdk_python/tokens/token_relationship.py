@@ -34,7 +34,8 @@ class TokenRelationship:
     token_id: Optional[TokenId] = None
     symbol: Optional[str] = None
     balance: Optional[int] = None
-    kyc_status: Any = None       # <- FIX: protobuf enum wrapper, use Any
+    kyc_status: Optional[TokenFreezeStatusProto] = None
+    freeze_status: Optional[TokenFreezeStatusProto] = None
     freeze_status: Any = None
     decimals: Optional[int] = None
     automatic_association: Optional[bool] = None
