@@ -32,13 +32,21 @@ def test_nftid_deprecated_alias_access():
     assert "tokenId" in str(record_tokenid[0].message)
 
 
-def test_tokeninfo_correct_access():
+def test_tokeninfo_deprecated_alias_access():
     token = TokenId.from_string("0.0.456")
     info = TokenInfo(token_id=token, total_supply=1000, is_deleted=True)
 
-    # Check that new names work as expected
-    assert info.total_supply == 1000
-    assert info.is_deleted is True
+    # totalSupply -> total_supply
+    with pytest.warns(FutureWarning) as record_supply:
+        got = info.totalSupply
+    assert got == 1000
+    assert "totalSupply" in str(record_supply[0].message)
+
+    # isDeleted -> is_deleted
+    with pytest.warns(FutureWarning) as record_delete:
+        got = info.isDeleted
+    assert got is True
+    assert "isDeleted" in str(record_delete[0].message)
 
 
 def test_transactionreceipt_deprecated_alias_access():
@@ -99,14 +107,14 @@ class DummyProto:
         self.freezeKey = Key()
         self.wipeKey = Key()
         self.supplyKey = Key()
-        self.metadataKey = Key()
-        self.feeScheduleKey = Key()
-        self.pauseKey = Key()
+        self.metadata_key = Key()
+        self.fee_schedule_key = Key()
+        self.pause_key = Key()
 
         # statuses
         self.defaultFreezeStatus = TokenFreezeStatus.FREEZE_NOT_APPLICABLE.value
         self.defaultKycStatus = TokenKycStatus.KYC_NOT_APPLICABLE.value
-        self.pauseStatus = TokenPauseStatus.PAUSE_NOT_APPLICABLE.value
+        self.pause_status = TokenPauseStatus.PAUSE_NOT_APPLICABLE.value
         self.supplyType = SupplyType.FINITE.value
 
         # skip these branches
